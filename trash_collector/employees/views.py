@@ -4,9 +4,10 @@ from django.urls import reverse
 from django.apps import apps
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+
 from .models import Employee
 from datetime import date
-
+from customers.models import Customer
 # Create your views here.
 
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
@@ -23,10 +24,19 @@ def index(request):
 
         today = date.today()
         
+        local_customers = Customer.objects.filter(zip_code = logged_in_employee.zip_code)
+            #figure out how to step into next step 
+            # customer name is not being added to today's trash variable 
+        todays_trash = local_customers.filter(weekly_pickup = today)
+        non_suspended_customers = todays_trash.exclude(suspend_start__gt=today, suspend_end__lt=today)
+        trash_unpicked = non_suspended_customers.filter(date_of_last_pickup__lt=today)
         context = {
             'logged_in_employee': logged_in_employee,
-            'today': today
+            'today': today,
+            'trash_unpicked': trash_unpicked,
         }
+        
+
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('employees:create'))
@@ -63,3 +73,6 @@ def edit_profile(request):
             'logged_in_employee': logged_in_employee
         }
         return render(request, 'employees/edit_profile.html', context)
+
+
+

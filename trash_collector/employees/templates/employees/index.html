@@ -8,9 +8,17 @@
   {% if user.is_authenticated %}
         Hello {{ logged_in_employee.name }}!<br />
         Address: {{ logged_in_employee.address }} {{logged_in_employee.zip_code }}<br />
+        <h1>Today's Trash Pickups</h1>
+        {% for customer in trash_unpicked %}
+        <ul>
+          <li>{{customer.name}}</li>
+          <li>{{customer.address}}</li>
+        </ul>
+        {% endfor %}
         <br />
         <br />
-        <br />
-        <br />
+ 
+        
+
   {% endif %}
 {% endblock %}
