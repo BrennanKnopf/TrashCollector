@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.apps import apps
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from trash_collector import employees
+from .models import Employee
 
 # Create your views here.
 
@@ -23,7 +23,7 @@ def create(request):
         name_from_form = request.POST.get('name')
         address_from_form = request.POST.get('address')
         zip_from_form = request.POST.get('zip_code')
-        new_employee = employees(name=name_from_form, user=logged_in_user, address=address_from_form, zip_code=zip_from_form, weekly_pickup=weekly_from_form)
+        new_employee = Employee(name=name_from_form, user=logged_in_user, address=address_from_form, zip_code=zip_from_form)
         new_employee.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
