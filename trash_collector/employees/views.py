@@ -79,6 +79,9 @@ def pick_up(request, customer_id):
     calendar_date = date.today()
     single_customer = Customer.objects.get(pk=customer_id)
     single_customer.date_of_last_pickup = calendar_date
+    single_customer.balance += 20 
     single_customer.save()
     return HttpResponseRedirect(reverse('employees:index'))
-    
+
+def week_filter(request):
+    return HttpResponseRedirect(reverse('employees:week_filter'))
