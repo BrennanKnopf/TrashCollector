@@ -1,3 +1,4 @@
+from calendar import Calendar, calendar
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -23,13 +24,13 @@ def index(request):
         logged_in_employee = Employee.objects.get(user=logged_in_user)
 
         today = date.today()
-        
+        weekday = date.weekday()
         local_customers = Customer.objects.filter(zip_code = logged_in_employee.zip_code)
             #figure out how to step into next step 
             # customer name is not being added to today's trash variable 
-        todays_trash = local_customers.filter(weekly_pickup = today)
+        todays_trash = local_customers.filter(weekly_pickup__lte = today)
         non_suspended_customers = todays_trash.exclude(suspend_start__gt=today, suspend_end__lt=today)
-        trash_unpicked = non_suspended_customers.filter(date_of_last_pickup__lt=today)
+        trash_unpicked = non_suspended_customers.exclude(date_of_last_pickup__lt= today )
         context = {
             'logged_in_employee': logged_in_employee,
             'today': today,
