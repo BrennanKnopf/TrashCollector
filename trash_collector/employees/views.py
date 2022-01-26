@@ -85,7 +85,7 @@ def pick_up(request, customer_id):
     return HttpResponseRedirect(reverse('employees:index'))
 
 def week_filter(request, weekly_pickup):
-    customer_list = Customer.objects.filter(weekly_pickup=weekly_pickup)
+    customer_list = Customer.objects.filter(weekly_pickup__iexact=weekly_pickup)
     context = {
             'customer_list': customer_list
         }

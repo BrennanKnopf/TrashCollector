@@ -6,8 +6,7 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-        Hello {{ logged_in_employee.name }}!<br />
-        
+        <h1>Today's Pickups are:</h1>        
         {% for customer in customer_list %}
         <ul>
           <li>{{customer.name}}</li>

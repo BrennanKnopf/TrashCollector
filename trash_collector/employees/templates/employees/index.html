@@ -16,12 +16,14 @@
           <a href='{% url "employees:pick_up" customer.id %}' type="button">Confirm Pick Up!</a>
         </ul>
         {% endfor %}
-        <form>
-          <label for= "weekday">Choose a day of the week:</label>
-
-          <input href='{% url "employees:week_filter/<str:weekly_pickup>/" %}' type="weekday" name="weekday" id="weekly_pickup" min="Monday" max="Sunday" required>
-          <input type="submit" value="Submit">
-      </form> 
+        
+        <a href='{% url "employees:week_filter" "Monday" %}' type="button">To see Monday's pickups</a>
+        <a href='{% url "employees:week_filter" "Tuesday" %}' type="button">To see Tuesday's pickups</a>
+        <a href='{% url "employees:week_filter" "Wednesday" %}' type="button">To see Wednesday's pickups</a>
+        <a href='{% url "employees:week_filter" "Thursday" %}' type="button">To see Thrusday's pickups</a>
+        <a href='{% url "employees:week_filter" "Friday" %}' type="button">To see Friday's pickups</a>
+        <a href='{% url "employees:week_filter" "Saturday" %}' type="button">To see Saturday's pickups</a>
+        <a href='{% url "employees:week_filter" "Sunday" %}' type="button">To see Sunday's pickups</a>
         <br />
         <br />
  
