@@ -13,6 +13,7 @@
         <ul>
           <li>{{customer.name}}</li>
           <li>{{customer.address}}</li>
+          <a href='{% url "employees:pick_up" customer.id %}' type="button">Confirm Pick Up!</a>
         </ul>
         {% endfor %}
         <br />

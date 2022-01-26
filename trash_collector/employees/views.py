@@ -27,9 +27,7 @@ def index(request):
 
         calendar_date = date.today()
         day_of_week = date.today().strftime("%A")
-        local_customers = Customer.objects.filter(zip_code = logged_in_employee.zip_code)
-            #figure out how to step into next step 
-            # customer name is not being added to today's trash variable 
+        local_customers = Customer.objects.filter(zip_code = logged_in_employee.zip_code) 
         todays_trash = local_customers.filter(weekly_pickup = day_of_week)
         non_suspended_customers = todays_trash.exclude(suspend_start__gt= calendar_date, suspend_end__lt= calendar_date)
         trash_unpicked = non_suspended_customers.exclude(date_of_last_pickup= calendar_date)
@@ -76,5 +74,11 @@ def edit_profile(request):
         }
         return render(request, 'employees/edit_profile.html', context)
 
-
-
+@login_required
+def pick_up(request, customer_id):
+    calendar_date = date.today()
+    single_customer = Customer.objects.get(pk=customer_id)
+    single_customer.date_of_last_pickup = calendar_date
+    single_customer.save()
+    return HttpResponseRedirect(reverse('employees:index'))
+    
