@@ -8,10 +8,13 @@
   {% if user.is_authenticated %}
         Hello {{ logged_in_employee.name }}!<br />
         Address: {{ logged_in_employee.address }} {{logged_in_employee.zip_code }}<br />
-        <label for= "weekday">Choose a day of the week:</label>
+        
+        <form>
+            <label for= "weekday">Choose a day of the week:</label>
 
-        <input type="weekday" name="weekday" id="weekly_pickup" min="Monday" max="Sunday" required>
-
+            <input type="weekday" name="weekday" id="weekly_pickup" min="Monday" max="Sunday" required>
+            <input type="submit" value="Submit">
+        </form> 
  
         
 

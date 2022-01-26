@@ -83,5 +83,7 @@ def pick_up(request, customer_id):
     single_customer.save()
     return HttpResponseRedirect(reverse('employees:index'))
 
-def week_filter(request):
+def week_filter(request, weekly_pickup):
+    day_of_week = date.today().strftime("%A")
+    customer_list = Customer.objects.filter(weekly_pickup = day_of_week)
     return HttpResponseRedirect(reverse('employees:week_filter'))
