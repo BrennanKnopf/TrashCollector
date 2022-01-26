@@ -16,14 +16,14 @@
           <a href='{% url "employees:pick_up" customer.id %}' type="button">Confirm Pick Up!</a>
         </ul>
         {% endfor %}
-        
-        <a href='{% url "employees:week_filter" "Monday" %}' type="button">To see Monday's pickups</a> 
-        <a href='{% url "employees:week_filter" "Tuesday" %}' type="button">To see Tuesday's pickups</a>
-        <a href='{% url "employees:week_filter" "Wednesday" %}' type="button">To see Wednesday's pickups</a>
-        <a href='{% url "employees:week_filter" "Thursday" %}' type="button">To see Thrusday's pickups</a>
-        <a href='{% url "employees:week_filter" "Friday" %}' type="button">To see Friday's pickups</a>
-        <a href='{% url "employees:week_filter" "Saturday" %}' type="button">To see Saturday's pickups</a>
-        <a href='{% url "employees:week_filter" "Sunday" %}' type="button">To see Sunday's pickups</a>
+       
+        <a href='{% url "employees:week_filter" "Monday" %}' type="button" class="btn btn-success">To see Monday's pickups</a>
+        <a href='{% url "employees:week_filter" "Tuesday" %}' type="button" class="btn btn-success">To see Tuesday's pickups</a>
+        <a href='{% url "employees:week_filter" "Wednesday" %}' type="button" class="btn btn-success">To see Wednesday's pickups</a>
+        <a href='{% url "employees:week_filter" "Thursday" %}' type="button"class="btn btn-success" >To see Thrusday's pickups</a>
+        <a href='{% url "employees:week_filter" "Friday" %}' type="button" class="btn btn-success">To see Friday's pickups</a>
+        <a href='{% url "employees:week_filter" "Saturday" %}' type="button" class="btn btn-success">To see Saturday's pickups</a>
+        <a href='{% url "employees:week_filter" "Sunday" %}' type="button" class="btn btn-success">To see Sunday's pickups</a>
         <br />
         <br />
  
@@ -31,3 +31,6 @@
 
   {% endif %}
 {% endblock %}
+
+
+

@@ -87,6 +87,7 @@ def pick_up(request, customer_id):
 def week_filter(request, weekly_pickup):
     customer_list = Customer.objects.filter(weekly_pickup__iexact=weekly_pickup)
     context = {
-            'customer_list': customer_list
+            'customer_list': customer_list,
+            'weekly_pickup': weekly_pickup
         }
     return render(request, 'employees/week_filter.html', context)
