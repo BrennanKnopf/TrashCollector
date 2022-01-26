@@ -20,11 +20,12 @@ from customers.models import Customer
 @login_required
 def index(request):
     # The following line will get the logged-in user (if there is one) within any view function
+    
     logged_in_user = request.user
     try:
         # This line will return the employee record of the logged-in user if one exists
         logged_in_employee = Employee.objects.get(user=logged_in_user)
-
+        # Customer = apps.get_model('customers.Customer')
         calendar_date = date.today()
         day_of_week = date.today().strftime("%A")
         local_customers = Customer.objects.filter(zip_code = logged_in_employee.zip_code) 
@@ -84,6 +85,8 @@ def pick_up(request, customer_id):
     return HttpResponseRedirect(reverse('employees:index'))
 
 def week_filter(request, weekly_pickup):
-    day_of_week = date.today().strftime("%A")
-    customer_list = Customer.objects.filter(weekly_pickup = day_of_week)
-    return HttpResponseRedirect(reverse('employees:week_filter'))
+    customer_list = Customer.objects.filter(weekly_pickup=weekly_pickup)
+    context = {
+            'customer_list': customer_list
+        }
+    return render(request, 'employees/week_filter.html', context)
