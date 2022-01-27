@@ -11,6 +11,7 @@ from .models import Employee
 from datetime import date
 import calendar
 from customers.models import Customer
+from django.db.models import Q
 # Create your views here.
 
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
@@ -29,7 +30,7 @@ def index(request):
         calendar_date = date.today()
         day_of_week = date.today().strftime("%A")
         local_customers = Customer.objects.filter(zip_code = logged_in_employee.zip_code) 
-        todays_trash = local_customers.filter(weekly_pickup = day_of_week)
+        todays_trash = local_customers.filter(Q(weekly_pickup = day_of_week) | Q(one_time_pickup=calendar_date))
         non_suspended_customers = todays_trash.exclude(suspend_start__gt= calendar_date, suspend_end__lt= calendar_date)
         trash_unpicked = non_suspended_customers.exclude(date_of_last_pickup= calendar_date)
         context = {

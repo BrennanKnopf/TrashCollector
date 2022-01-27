@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -70,6 +71,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'trash_collector.wsgi.application'
 
 
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -118,6 +121,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_API_KEY = "XXX"
 
 # Defines our custom user model as the auth user for the app
 AUTH_USER_MODEL = 'accounts.User'

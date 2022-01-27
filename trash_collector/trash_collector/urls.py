@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings 
 from . import views
 
 urlpatterns = [
@@ -30,3 +32,4 @@ urlpatterns = [
     # 'home' redirects a user to the appropriate index based on their auth group. Investigate trach_collector/views.py for more info
     path('', views.group_redirect, name='home')
 ]
+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
